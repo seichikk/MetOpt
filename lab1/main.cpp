@@ -34,12 +34,12 @@ void run_tests() {
     GLOBAL_COMPARE_MODE = CompareMode::RELAXED;
 
     std::cout << "имитация отжига, min, розенброк 2D\n";
-    Point res_min_2d = simulated_annealing(rosenbrock_nd, start_2d, OptGoal::MIN);
+    Point res_min_2d = simulated_annealing(rosenbrock_nd, start_2d, OptGoal::MIN, 2000.0, 0.995, 10000, 0.2);
     std::cout << "точка: (" << res_min_2d[0].center() << ", " << res_min_2d[1].center() << ")\n";
     std::cout << "значение функции: " << rosenbrock_nd(res_min_2d) << "\n\n";
 
     std::cout << "имитация отжига, min, розенброк 5D\n";
-    Point res_min_5d = simulated_annealing(rosenbrock_nd, start_5d, OptGoal::MIN, 2000.0, 0.995, 10000, 0.2);
+    Point res_min_5d = simulated_annealing(rosenbrock_nd, start_5d, OptGoal::MIN, 2000.0, 0.995, 10000, 0.37);
     std::cout << "точки: (";
     for(size_t i=0; i<res_min_5d.size(); ++i) std::cout << res_min_5d[i].center() << (i == 4 ? "" : ", ");
     std::cout << ")\nзначение функции: " << rosenbrock_nd(res_min_5d) << "\n\n";
