@@ -105,6 +105,9 @@ Point gradient_descent_momentum(ObjectiveFunction func, GradientFunction grad, P
     ConstructiveReal lr(learning_rate);
     ConstructiveReal mom(momentum);
 
+    Point best_point = current_point;
+    double best_val = func(current_point).center();
+
     for (int i = 0; i < iterations; ++i) {
         Point g = grad(current_point);
         Point next_point = current_point;
@@ -113,7 +116,7 @@ Point gradient_descent_momentum(ObjectiveFunction func, GradientFunction grad, P
         for (size_t j = 0; j < current_point.size(); ++j) {
             velocity[j] = (mom * velocity[j]) + (lr * g[j]);
             ConstructiveReal step = velocity[j];
-            
+
             if (goal == OptGoal::MAX) {
                 next_point[j] = current_point[j] + step;
             } else {
@@ -123,7 +126,12 @@ Point gradient_descent_momentum(ObjectiveFunction func, GradientFunction grad, P
         }
 
         current_point = next_point;
+
+        double val = func(current_point).center();
+        bool better = (goal == OptGoal::MIN) ? (val < best_val) : (val > best_val);
+        if (better) { best_val = val; best_point = current_point; }
+
         if (max_step < tolerance) break;
     }
-    return current_point;
+    return best_point;
 }
