@@ -2,7 +2,7 @@
 #include <random>
 #include <cmath>
 
-Point random_search(ObjectiveFunction func, int dimensions, OptGoal goal,
+Point random_search(const ObjectiveFunction& func, int dimensions, OptGoal goal,
                     double search_min, double search_max, int iterations, double initial_epsilon) 
 {
     std::mt19937 gen(std::random_device{}());
@@ -26,7 +26,7 @@ Point random_search(ObjectiveFunction func, int dimensions, OptGoal goal,
     return best_point;
 }
 
-Point simulated_annealing(ObjectiveFunction func, Point start_point, OptGoal goal,
+Point simulated_annealing(const ObjectiveFunction& func, const Point& start_point, OptGoal goal,
                           double initial_temp, double cooling_rate, int iterations, double step_size) 
 {
     std::mt19937 gen(std::random_device{}());

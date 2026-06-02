@@ -123,10 +123,10 @@ void run_tests() {
     Point res_sa_rosen = simulated_annealing(rosenbrock_nd, start_2d, OptGoal::MIN, 2000.0, 0.995, 10000, 0.2);
     std::cout << "имитация отжига: (" << res_sa_rosen[0].center() << ", " << res_sa_rosen[1].center() << ") -> " << rosenbrock_nd(res_sa_rosen).center() << "\n";
 
-    Point res_gd_rosen = gradient_descent(rosenbrock_nd, rosenbrock_nd_grad, start_2d, OptGoal::MIN, 0.000001, 20000);
+    Point res_gd_rosen = gradient_descent(rosenbrock_nd, rosenbrock_nd_grad, start_2d, OptGoal::MIN, 0.0000001, 50000);
     std::cout << "градиентный спуск: (" << res_gd_rosen[0].center() << ", " << res_gd_rosen[1].center() << ") -> " << rosenbrock_nd(res_gd_rosen).center() << "\n";
 
-    Point res_mom_rosen = gradient_descent_momentum(rosenbrock_nd, rosenbrock_nd_grad, start_2d, OptGoal::MIN, 0.000001, 0.9, 20000);
+    Point res_mom_rosen = gradient_descent_momentum(rosenbrock_nd, rosenbrock_nd_grad, start_2d, OptGoal::MIN, 0.00000001, 0.9, 50000);
     std::cout << "градиентный спуск с моментом: (" << res_mom_rosen[0].center() << ", " << res_mom_rosen[1].center() << ") -> " << rosenbrock_nd(res_mom_rosen).center() << "\n\n";
 
     std::cout << "сферическая функция 5d\n";

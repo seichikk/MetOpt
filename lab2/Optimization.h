@@ -10,7 +10,7 @@ using GradientFunction = std::function<Point(const Point&)>;
 enum class OptGoal { MIN, MAX };
 
 Point random_search(
-    ObjectiveFunction func, 
+    const ObjectiveFunction& func,
     int dimensions, 
     OptGoal goal,
     double search_min = -5.0, 
@@ -20,8 +20,8 @@ Point random_search(
 );
 
 Point simulated_annealing(
-    ObjectiveFunction func, 
-    Point start_point, 
+    const ObjectiveFunction& func,
+    const Point& start_point,
     OptGoal goal,
     double initial_temp = 1000.0, 
     double cooling_rate = 0.99, 
@@ -30,9 +30,9 @@ Point simulated_annealing(
 );
 
 Point gradient_descent(
-    ObjectiveFunction func, 
-    GradientFunction grad, 
-    Point start_point, 
+    const ObjectiveFunction& func,
+    const GradientFunction& grad,
+    const Point& start_point,
     OptGoal goal, 
     double learning_rate = 0.001, 
     int iterations = 10000, 
@@ -40,9 +40,9 @@ Point gradient_descent(
 );
 
 Point gradient_descent_momentum(
-    ObjectiveFunction func, 
-    GradientFunction grad, 
-    Point start_point, 
+    const ObjectiveFunction& func,
+    const GradientFunction& grad,
+    const Point& start_point,
     OptGoal goal, 
     double learning_rate = 0.001, 
     double momentum = 0.9, 

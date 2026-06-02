@@ -2,7 +2,7 @@
 #include <random>
 #include <cmath>
 
-Point random_search(ObjectiveFunction func, int dimensions, OptGoal goal,
+Point random_search(const ObjectiveFunction& func, int dimensions, OptGoal goal,
                     double search_min, double search_max, int iterations, double initial_epsilon) 
 {
     std::mt19937 gen(std::random_device{}());
@@ -26,7 +26,7 @@ Point random_search(ObjectiveFunction func, int dimensions, OptGoal goal,
     return best_point;
 }
 
-Point simulated_annealing(ObjectiveFunction func, Point start_point, OptGoal goal,
+Point simulated_annealing(const ObjectiveFunction& func, const Point& start_point, OptGoal goal,
                           double initial_temp, double cooling_rate, int iterations, double step_size) 
 {
     std::mt19937 gen(std::random_device{}());
@@ -74,7 +74,7 @@ Point simulated_annealing(ObjectiveFunction func, Point start_point, OptGoal goa
     return best_point;
 }
 
-Point gradient_descent(ObjectiveFunction func, GradientFunction grad, Point start_point, OptGoal goal, double learning_rate, int iterations, double tolerance) {
+Point gradient_descent(const ObjectiveFunction& func, const GradientFunction& grad, const Point& start_point, OptGoal goal, double learning_rate, int iterations, double tolerance) {
     Point current_point = start_point;
     ConstructiveReal lr(learning_rate);
 
@@ -99,7 +99,7 @@ Point gradient_descent(ObjectiveFunction func, GradientFunction grad, Point star
     return current_point;
 }
 
-Point gradient_descent_momentum(ObjectiveFunction func, GradientFunction grad, Point start_point, OptGoal goal, double learning_rate, double momentum, int iterations, double tolerance) {
+Point gradient_descent_momentum(const ObjectiveFunction& func, const GradientFunction& grad, const Point& start_point, OptGoal goal, double learning_rate, double momentum, int iterations, double tolerance) {
     Point current_point = start_point;
     Point velocity(start_point.size(), ConstructiveReal(0.0));
     ConstructiveReal lr(learning_rate);

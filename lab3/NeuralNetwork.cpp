@@ -46,7 +46,7 @@ int predict_class(const vector<double>& input, const Point& p, int input_dim, in
     return best;
 }
 
-Point numerical_gradient(ObjectiveFunction func, const Point& p, double h) {
+Point numerical_gradient(const ObjectiveFunction& func, const Point& p, double h) {
     Point g(p.size(), ConstructiveReal(0.0));
     ConstructiveReal f_curr = func(p);
     for (size_t i = 0; i < p.size(); ++i) {
